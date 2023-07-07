@@ -1,0 +1,5 @@
+name: YMCA Cloud infra
+type: module
+description: Provides additional functionality for the site.
+package: YMCA Cloud
+core_version_requirement: ^9 || ^10
