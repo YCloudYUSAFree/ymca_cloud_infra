@@ -38,3 +38,15 @@ function ymca_cloud_infra_requirements($phase) {
 
   return $requirements;
 }
+
+/**
+ * Import user.role.contributor.
+ */
+function ymca_cloud_infra_update_9001() {
+  $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
+  $config_importer = \Drupal::service('config_import.importer');
+  $config_importer->setDirectory($path);
+  $config_importer->importConfigs([
+    'user.role.contributor',
+  ]);
+}
