@@ -1,0 +1,293 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.node.article_lb.default
+    - core.entity_view_display.node.branch.full
+    - core.entity_view_display.node.landing_page_lb.default
+    - core.entity_view_display.node.lb_event.default
+    - filter.format.code
+    - filter.format.full_html
+    - media.type.document
+    - media.type.image
+    - media.type.video
+    - node.type.activity
+    - node.type.alert
+    - node.type.article_lb
+    - node.type.blog
+    - node.type.branch
+    - node.type.camp
+    - node.type.class
+    - node.type.event
+    - node.type.facility
+    - node.type.landing_page
+    - node.type.landing_page_lb
+    - node.type.lb_event
+    - node.type.membership
+    - node.type.news
+    - node.type.program
+    - node.type.program_subcategory
+    - node.type.session
+    - node.type.social_post
+    - taxonomy.vocabulary.amenities
+    - taxonomy.vocabulary.area
+    - taxonomy.vocabulary.blog_category
+    - taxonomy.vocabulary.color
+    - taxonomy.vocabulary.facility_type
+    - taxonomy.vocabulary.font_classification
+    - taxonomy.vocabulary.font_designer
+    - taxonomy.vocabulary.font_foundry
+    - taxonomy.vocabulary.font_tags
+    - taxonomy.vocabulary.languages_supported
+    - taxonomy.vocabulary.media_folders
+    - taxonomy.vocabulary.media_tags
+    - taxonomy.vocabulary.news_category
+  module:
+    - block
+    - bootstrap_layout_builder
+    - content_moderation
+    - contextual
+    - daxko
+    - dropzonejs
+    - entity_browser
+    - entity_clone
+    - file
+    - file_delete
+    - filter
+    - google_analytics
+    - google_optimize
+    - google_tag
+    - layout_builder
+    - layout_builder_restrictions
+    - media
+    - media_directories_ui
+    - metatag
+    - node
+    - openy
+    - openy_daxko2
+    - openy_programs_search
+    - path
+    - quickedit
+    - redirect
+    - role_delegation
+    - scheduler
+    - system
+    - taxonomy
+    - toolbar
+    - tour
+    - update
+    - webform
+id: site_owner
+label: 'Site Owner'
+weight: 5
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access documents_library entity browser pages'
+  - 'access documents_library_embed entity browser pages'
+  - 'access files overview'
+  - 'access images_library entity browser pages'
+  - 'access images_library_embed entity browser pages'
+  - 'access in-place editing'
+  - 'access media directories ui browser'
+  - 'access media overview'
+  - 'access media_directories_modal entity browser pages'
+  - 'access media_directories_overview entity browser pages'
+  - 'access site in maintenance mode'
+  - 'access structure page'
+  - 'access toolbar'
+  - 'access tour'
+  - 'access videos_library entity browser pages'
+  - 'access videos_library_embed entity browser pages'
+  - 'add JS snippets for google analytics'
+  - 'administer blocks'
+  - 'administer daxko'
+  - 'administer daxko2'
+  - 'administer google analytics'
+  - 'administer google optimize'
+  - 'administer google tag manager'
+  - 'administer media'
+  - 'administer menu'
+  - 'administer meta tags'
+  - 'administer nodes'
+  - 'administer programs search'
+  - 'administer redirects'
+  - 'administer site configuration'
+  - 'administer taxonomy'
+  - 'administer themes'
+  - 'administer users'
+  - 'administer webform'
+  - 'assign contributor role'
+  - 'assign editor role'
+  - 'assign site_owner role'
+  - 'bypass node access'
+  - 'clone blb_breakpoint entity'
+  - 'clone blb_layout entity'
+  - 'clone blb_layout_option entity'
+  - 'configure all article_lb node layout overrides'
+  - 'configure all branch node layout overrides'
+  - 'configure all landing_page_lb node layout overrides'
+  - 'configure all lb_event node layout overrides'
+  - 'configure any layout'
+  - 'configure bootstrap layout builder'
+  - 'configure editable article_lb node layout overrides'
+  - 'configure editable branch node layout overrides'
+  - 'configure editable landing_page_lb node layout overrides'
+  - 'configure editable lb_event node layout overrides'
+  - 'configure layout builder restrictions'
+  - 'create activity content'
+  - 'create alert content'
+  - 'create and edit custom blocks'
+  - 'create article_lb content'
+  - 'create blog content'
+  - 'create branch content'
+  - 'create camp content'
+  - 'create class content'
+  - 'create event content'
+  - 'create facility content'
+  - 'create image media'
+  - 'create landing_page content'
+  - 'create landing_page_lb content'
+  - 'create lb_event content'
+  - 'create media'
+  - 'create membership content'
+  - 'create news content'
+  - 'create program content'
+  - 'create program_subcategory content'
+  - 'create session content'
+  - 'create social_post content'
+  - 'create terms in amenities'
+  - 'create terms in area'
+  - 'create terms in blog_category'
+  - 'create terms in color'
+  - 'create terms in facility_type'
+  - 'create terms in font_classification'
+  - 'create terms in font_designer'
+  - 'create terms in font_foundry'
+  - 'create terms in font_tags'
+  - 'create terms in languages_supported'
+  - 'create terms in media_folders'
+  - 'create terms in media_tags'
+  - 'create terms in news_category'
+  - 'create url aliases'
+  - 'create video media'
+  - 'delete any alert content'
+  - 'delete any blog content'
+  - 'delete any branch content'
+  - 'delete any camp content'
+  - 'delete any class content'
+  - 'delete any facility content'
+  - 'delete any landing_page content'
+  - 'delete any landing_page_lb content'
+  - 'delete any lb_event content'
+  - 'delete any media'
+  - 'delete any membership content'
+  - 'delete any program content'
+  - 'delete any program_subcategory content'
+  - 'delete article_lb revisions'
+  - 'delete files'
+  - 'delete landing_page_lb revisions'
+  - 'delete lb_event revisions'
+  - 'delete media'
+  - 'delete own activity content'
+  - 'delete own alert content'
+  - 'delete own article_lb content'
+  - 'delete own branch content'
+  - 'delete own camp content'
+  - 'delete own class content'
+  - 'delete own facility content'
+  - 'delete own landing_page content'
+  - 'delete own landing_page_lb content'
+  - 'delete own lb_event content'
+  - 'delete own membership content'
+  - 'delete own program content'
+  - 'delete own program_subcategory content'
+  - 'delete own session content'
+  - 'delete terms in area'
+  - 'delete terms in blog_category'
+  - 'delete terms in color'
+  - 'delete terms in facility_type'
+  - 'delete terms in media_tags'
+  - 'delete terms in news_category'
+  - 'dropzone upload files'
+  - 'edit any activity content'
+  - 'edit any alert content'
+  - 'edit any article_lb content'
+  - 'edit any branch content'
+  - 'edit any camp content'
+  - 'edit any class content'
+  - 'edit any facility content'
+  - 'edit any image media'
+  - 'edit any landing_page content'
+  - 'edit any landing_page_lb content'
+  - 'edit any lb_event content'
+  - 'edit any membership content'
+  - 'edit any program content'
+  - 'edit any program_subcategory content'
+  - 'edit any session content'
+  - 'edit any video media'
+  - 'edit own activity content'
+  - 'edit own alert content'
+  - 'edit own article_lb content'
+  - 'edit own blog content'
+  - 'edit own branch content'
+  - 'edit own camp content'
+  - 'edit own class content'
+  - 'edit own document media'
+  - 'edit own facility content'
+  - 'edit own landing_page content'
+  - 'edit own landing_page_lb content'
+  - 'edit own lb_event content'
+  - 'edit own membership content'
+  - 'edit own news content'
+  - 'edit own program content'
+  - 'edit own program_subcategory content'
+  - 'edit own session content'
+  - 'edit terms in area'
+  - 'edit terms in blog_category'
+  - 'edit terms in color'
+  - 'edit terms in facility_type'
+  - 'edit terms in media_tags'
+  - 'edit terms in news_category'
+  - 'revert alert revisions'
+  - 'revert all revisions'
+  - 'revert article_lb revisions'
+  - 'revert branch revisions'
+  - 'revert camp revisions'
+  - 'revert class revisions'
+  - 'revert facility revisions'
+  - 'revert landing_page revisions'
+  - 'revert landing_page_lb revisions'
+  - 'revert lb_event revisions'
+  - 'revert membership revisions'
+  - 'revert program revisions'
+  - 'revert program_subcategory revisions'
+  - 'schedule publishing of nodes'
+  - 'update any media'
+  - 'update media'
+  - 'use text format code'
+  - 'use text format full_html'
+  - 'view activity revisions'
+  - 'view alert revisions'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view article_lb revisions'
+  - 'view blog revisions'
+  - 'view branch revisions'
+  - 'view camp revisions'
+  - 'view class revisions'
+  - 'view facility revisions'
+  - 'view landing_page revisions'
+  - 'view landing_page_lb revisions'
+  - 'view latest version'
+  - 'view lb_event revisions'
+  - 'view membership revisions'
+  - 'view news revisions'
+  - 'view own unpublished content'
+  - 'view program revisions'
+  - 'view program_subcategory revisions'
+  - 'view session revisions'
+  - 'view the administration theme'
+  - 'view update notifications'
