@@ -12,6 +12,13 @@ function ymca_cloud_infra_install() {
   \Drupal::messenger()->addStatus(__FUNCTION__);
   // Set hook update to 9000, so that the hook_update_N() will be executed.
   \Drupal::service('update.update_hook_registry')->setInstalledVersion('ymca_cloud_infra', 9000);
+
+  // Enable modules with demo content.
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $demo_content_service->enableDemoContentModules();
+  $demo_content_service->runMigrations();
+  // $demo_content_service->disableDemoContentModules();
 }
 
 /**
