@@ -36,27 +36,12 @@ class DemoContent {
    */
   public function __construct(ModuleInstallerInterface $module_installer, Importer $importer) {
     $this->mapping = [
-      // 'openy_demo_nclass' => [],
-      // 'openy_demo_nfacility' => [],
-      // 'openy_demo_nprogram' => [
-      //   'openy_demo_paragraph_category_listing',
-      //   'openy_demo_paragraph_promo_card',
-      //   'openy_demo_node_program',
-      // ],
-      'openy_demo_bamenities' => [],
       'openy_demo_nbranch' => ['openy_demo_node_branch'],
-      // 'openy_demo_nsessions' => [
-      //   'openy_demo_node_session_01',
-      //   'openy_demo_node_session_02',
-      //   'openy_demo_node_session_03',
-      //   'openy_demo_node_session_04',
-      //   'openy_demo_node_session_05',
-      //   'openy_demo_node_session_06',
-      //   'openy_demo_paragraph_session_time_01',
-      //   'openy_demo_paragraph_session_time_02',
-      //   'openy_demo_paragraph_session_time_03',
-      //   'openy_demo_paragraph_session_time_04',
-      // ],
+      // Locations page dependencies.
+      'openy_prgf_loc_finder' => [],
+      'openy_prgf_location_by_amenities' => [],
+      'openy_demo_tamenities' => ['openy_demo_taxonomy_term_amenities'],
+      'openy_demo_nlanding' => ['openy_demo_node_landing'],
     ];
     $this->moduleInstaller = $module_installer;
     $this->importer = $importer;

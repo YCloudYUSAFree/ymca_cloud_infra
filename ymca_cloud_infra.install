@@ -19,6 +19,9 @@ function ymca_cloud_infra_install() {
   $demo_content_service->enableDemoContentModules();
   $demo_content_service->runMigrations();
   // $demo_content_service->disableDemoContentModules();
+  $install_state = [];
+  openy_discover_broken_paragraphs($install_state);
+  openy_fix_configured_paragraph_blocks($install_state);
 }
 
 /**
