@@ -3,9 +3,7 @@
 namespace Drupal\ymca_cloud_infra;
 
 use Drupal\Core\Extension\ModuleInstallerInterface;
-use Drupal\migrate\MigrateMessage;
-use Drupal\migrate\Plugin\MigrationPluginManagerInterface;
-use Drupal\migrate_tools\MigrateExecutable;
+use Drupal\openy_migrate\Importer;
 
 /**
  * Service description.
@@ -27,41 +25,41 @@ class DemoContent {
   protected $moduleInstaller;
 
   /**
-   * The migration plugin manager.
+   * The importer.
    *
-   * @var \Drupal\migrate\Plugin\MigrationPluginManager
+   * @var \Drupal\openy_migrate\Importer
    */
-  protected $migrationPluginManager;
+  protected $importer;
 
   /**
    * Class constructor.
    */
-  public function __construct(ModuleInstallerInterface $module_installer, MigrationPluginManagerInterface $migration_plugin_manager) {
+  public function __construct(ModuleInstallerInterface $module_installer, Importer $importer) {
     $this->mapping = [
-      'openy_demo_nclass' => [],
+      // 'openy_demo_nclass' => [],
+      // 'openy_demo_nfacility' => [],
+      // 'openy_demo_nprogram' => [
+      //   'openy_demo_paragraph_category_listing',
+      //   'openy_demo_paragraph_promo_card',
+      //   'openy_demo_node_program',
+      // ],
       'openy_demo_bamenities' => [],
-      'openy_demo_nfacility' => [],
-      'openy_demo_nprogram' => [
-        'openy_demo_paragraph_category_listing',
-        'openy_demo_paragraph_promo_card',
-        'openy_demo_node_program',
-      ],
       'openy_demo_nbranch' => ['openy_demo_node_branch'],
-      'openy_demo_nsessions' => [
-        'openy_demo_node_session_01',
-        'openy_demo_node_session_02',
-        'openy_demo_node_session_03',
-        'openy_demo_node_session_04',
-        'openy_demo_node_session_05',
-        'openy_demo_node_session_06',
-        'openy_demo_paragraph_session_time_01',
-        'openy_demo_paragraph_session_time_02',
-        'openy_demo_paragraph_session_time_03',
-        'openy_demo_paragraph_session_time_04',
-      ],
+      // 'openy_demo_nsessions' => [
+      //   'openy_demo_node_session_01',
+      //   'openy_demo_node_session_02',
+      //   'openy_demo_node_session_03',
+      //   'openy_demo_node_session_04',
+      //   'openy_demo_node_session_05',
+      //   'openy_demo_node_session_06',
+      //   'openy_demo_paragraph_session_time_01',
+      //   'openy_demo_paragraph_session_time_02',
+      //   'openy_demo_paragraph_session_time_03',
+      //   'openy_demo_paragraph_session_time_04',
+      // ],
     ];
     $this->moduleInstaller = $module_installer;
-    $this->migrationPluginManager = $migration_plugin_manager;
+    $this->importer = $importer;
   }
 
   /**
@@ -88,9 +86,7 @@ class DemoContent {
   public function runMigrations() {
     foreach ($this->mapping as $migration_ids) {
       foreach ($migration_ids as $migration_id) {
-        $migration = $this->migrationPluginManager->createInstance($migration_id);
-        $executable = new MigrateExecutable($migration, new MigrateMessage());
-        $executable->import();
+        $this->importer->import($migration_id);
       }
     }
   }
