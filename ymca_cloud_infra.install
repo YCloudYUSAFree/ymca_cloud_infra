@@ -12,6 +12,17 @@ function ymca_cloud_infra_install() {
   \Drupal::messenger()->addStatus(__FUNCTION__);
   // Set hook update to 9000, so that the hook_update_N() will be executed.
   \Drupal::service('update.update_hook_registry')->setInstalledVersion('ymca_cloud_infra', 9000);
+
+  // Enable modules with demo content.
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $demo_content_service->enableDemoContentModules();
+  $demo_content_service->clearMainMenu();
+  $demo_content_service->runMigrations();
+  $demo_content_service->disableDemoContentModules();
+  $install_state = [];
+  openy_discover_broken_paragraphs($install_state);
+  openy_fix_configured_paragraph_blocks($install_state);
 }
 
 /**
@@ -61,4 +72,13 @@ function ymca_cloud_infra_update_9002() {
   $config_importer->importConfigs([
     'user.role.site_owner',
   ]);
+}
+
+/**
+ * Set default region for site.
+ */
+function ymca_cloud_infra_update_9003() {
+  $config = \Drupal::configFactory()->getEditable('system.date');
+  $config->set('country.default', 'US');
+  $config->save();
 }

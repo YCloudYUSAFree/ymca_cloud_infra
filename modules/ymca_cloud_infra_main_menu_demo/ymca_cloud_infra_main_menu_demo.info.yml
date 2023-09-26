@@ -1,0 +1,8 @@
+name: YMCA Cloud infra Demo Main Menu
+type: module
+description: Provides demo main menu for YMCA Cloud infra
+package: YMCA Cloud
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:openy_demo_menu
+  - drupal:openy_demo_menu_main

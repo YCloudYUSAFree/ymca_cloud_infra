@@ -1,0 +1,4 @@
+services:
+  ymca_cloud_infra.demo_content:
+    class: Drupal\ymca_cloud_infra\DemoContent
+    arguments: ['@module_installer', '@openy_migrate.importer', '@menu.link_tree']
