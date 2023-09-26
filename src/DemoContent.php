@@ -36,12 +36,26 @@ class DemoContent {
    */
   public function __construct(ModuleInstallerInterface $module_installer, Importer $importer) {
     $this->mapping = [
+      // Demo branches content.
       'openy_demo_nbranch' => ['openy_demo_node_branch'],
       // Locations page dependencies.
       'openy_prgf_loc_finder' => [],
       'openy_prgf_location_by_amenities' => [],
       'openy_demo_tamenities' => ['openy_demo_taxonomy_term_amenities'],
       'openy_demo_nlanding' => ['openy_demo_node_landing'],
+      // Programs sub-program content.
+      'openy_prgf_categories_listing' => [],
+      'openy_prgf_classes_listing' => [],
+      'openy_prgf_branches_popup_all' => [],
+      'openy_demo_nprogram' => [
+        'openy_demo_paragraph_category_listing',
+        'openy_demo_paragraph_promo_card',
+        'openy_demo_node_program',
+      ],
+      'openy_demo_ncategory' => ['openy_demo_node_program_subcategory'],
+      'openy_demo_menu' => [],
+      'openy_demo_menu_main' => [],
+      'ymca_cloud_infra_main_menu_demo' => ['yusa_demo_menu_link_main'],
     ];
     $this->moduleInstaller = $module_installer;
     $this->importer = $importer;
@@ -51,18 +65,16 @@ class DemoContent {
    * Enable modules with demo content.
    */
   public function enableDemoContentModules() {
-    foreach ($this->mapping as $module => $value) {
-      $this->moduleInstaller->install([$module]);
-    }
+    $modules = array_keys($this->mapping) ?? [];
+    $this->moduleInstaller->install($modules);
   }
 
   /**
    * Disable modules with demo content.
    */
   public function disableDemoContentModules() {
-    foreach ($this->mapping as $module => $value) {
-      $this->moduleInstaller->uninstall([$module]);
-    }
+    $modules = array_keys($this->mapping) ?? [];
+    $this->moduleInstaller->uninstall([$modules]);
   }
 
   /**
@@ -73,6 +85,18 @@ class DemoContent {
       foreach ($migration_ids as $migration_id) {
         $this->importer->import($migration_id);
       }
+    }
+  }
+
+  /**
+   * Clear main menu. Remove all items.
+   */
+  public function clearMainMenu() {
+    $menu_tree = \Drupal::menuTree();
+    $parameters = $menu_tree->getCurrentRouteMenuTreeParameters('main');
+    $tree = $menu_tree->load('main', $parameters);
+    foreach ($tree as $item) {
+      $item->link->deleteLink();
     }
   }
 
