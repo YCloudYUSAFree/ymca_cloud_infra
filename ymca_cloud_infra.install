@@ -73,3 +73,12 @@ function ymca_cloud_infra_update_9002() {
     'user.role.site_owner',
   ]);
 }
+
+/**
+ * Set default region for site.
+ */
+function ymca_cloud_infra_update_9003() {
+  $config = \Drupal::configFactory()->getEditable('system.date');
+  $config->set('country.default', 'US');
+  $config->save();
+}
