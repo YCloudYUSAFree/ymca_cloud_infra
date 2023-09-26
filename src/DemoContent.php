@@ -85,7 +85,11 @@ class DemoContent {
    */
   public function disableDemoContentModules() {
     $modules = array_keys($this->mapping) ?? [];
-    $this->moduleInstaller->uninstall([$modules]);
+    // Disable only demo content modules.
+    $modules = array_filter($modules, function ($module) {
+      return strpos($module, 'demo') !== FALSE;
+    });
+    $this->moduleInstaller->uninstall($modules);
   }
 
   /**
