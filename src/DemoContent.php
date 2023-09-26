@@ -89,6 +89,9 @@ class DemoContent {
     $modules = array_keys($this->mapping) ?? [];
     foreach ($modules as $module) {
       $this->moduleInstaller->install([$module]);
+      // Avoid memory allocate.
+      // phpcs:ignore
+      \Drupal\Component\FileCache\FileCache::reset();
     }
   }
 
@@ -103,6 +106,9 @@ class DemoContent {
     });
     foreach ($modules as $module) {
       $this->moduleInstaller->uninstall([$module]);
+      // Avoid memory allocate.
+      // phpcs:ignore
+      \Drupal\Component\FileCache\FileCache::reset();
     }
   }
 
