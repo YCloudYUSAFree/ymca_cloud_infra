@@ -106,6 +106,9 @@ class DemoContent {
     });
     foreach ($modules as $module) {
       $this->moduleInstaller->uninstall([$module]);
+      // Avoid memory allocate.
+      // phpcs:ignore
+      \Drupal\Component\FileCache\FileCache::reset();
     }
   }
 
