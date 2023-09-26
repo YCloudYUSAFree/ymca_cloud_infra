@@ -3,6 +3,9 @@
 namespace Drupal\ymca_cloud_infra;
 
 use Drupal\Core\Extension\ModuleInstallerInterface;
+use Drupal\Core\Menu\MenuLinkInterface;
+use Drupal\Core\Menu\MenuLinkTreeInterface;
+use Drupal\Core\Menu\MenuTreeStorage;
 use Drupal\openy_migrate\Importer;
 
 /**
@@ -32,9 +35,16 @@ class DemoContent {
   protected $importer;
 
   /**
+   * The menu link tree.
+   *
+   * @var \Drupal\Core\Menu\MenuLinkTreeInterface
+   */
+  protected $menuLinkTree;
+
+  /**
    * Class constructor.
    */
-  public function __construct(ModuleInstallerInterface $module_installer, Importer $importer) {
+  public function __construct(ModuleInstallerInterface $module_installer, Importer $importer, MenuLinkTreeInterface $menu_link_tree) {
     $this->mapping = [
       // Demo branches content.
       'openy_demo_nbranch' => ['openy_demo_node_branch'],
@@ -70,6 +80,7 @@ class DemoContent {
     ];
     $this->moduleInstaller = $module_installer;
     $this->importer = $importer;
+    $this->menuLinkTree = $menu_link_tree;
   }
 
   /**
@@ -107,9 +118,8 @@ class DemoContent {
    * Clear main menu. Remove all items.
    */
   public function clearMainMenu() {
-    $menu_tree = \Drupal::menuTree();
-    $parameters = $menu_tree->getCurrentRouteMenuTreeParameters('main');
-    $tree = $menu_tree->load('main', $parameters);
+    $parameters = $this->menuLinkTree->getCurrentRouteMenuTreeParameters('main');
+    $tree = $this->menuLinkTree->load('main', $parameters);
     foreach ($tree as $item) {
       $item->link->deleteLink();
     }
