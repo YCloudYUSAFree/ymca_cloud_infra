@@ -87,7 +87,9 @@ class DemoContent {
    */
   public function enableDemoContentModules() {
     $modules = array_keys($this->mapping) ?? [];
-    $this->moduleInstaller->install($modules);
+    foreach ($modules as $module) {
+      $this->moduleInstaller->install([$module]);
+    }
   }
 
   /**
@@ -99,7 +101,9 @@ class DemoContent {
     $modules = array_filter($modules, function ($module) {
       return strpos($module, 'demo') !== FALSE;
     });
-    $this->moduleInstaller->uninstall($modules);
+    foreach ($modules as $module) {
+      $this->moduleInstaller->uninstall([$module]);
+    }
   }
 
   /**
