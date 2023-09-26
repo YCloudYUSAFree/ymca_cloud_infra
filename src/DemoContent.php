@@ -6,7 +6,7 @@ use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\openy_migrate\Importer;
 
 /**
- * Service description.
+ * Demo content service.
  */
 class DemoContent {
 
