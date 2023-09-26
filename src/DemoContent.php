@@ -72,6 +72,7 @@ class DemoContent {
         'openy_demo_paragraph_class_sessions_01',
         'openy_demo_paragraph_class_sessions_02',
       ],
+      // Menu items.
       'openy_demo_menu' => [],
       'openy_demo_menu_main' => [],
       'ymca_cloud_infra_main_menu_demo' => ['yusa_demo_menu_link_main'],
