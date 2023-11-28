@@ -6,6 +6,18 @@
  */
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function ymca_cloud_infra_update_dependencies() {
+  $dependencies['lb_grid_icon'] = [
+    9002 => [
+      'ymca_cloud_infra' => 9004,
+    ],
+  ];
+  return $dependencies;
+}
+
+/**
  * Implements hook_install().
  */
 function ymca_cloud_infra_install() {
@@ -81,4 +93,22 @@ function ymca_cloud_infra_update_9003() {
   $config = \Drupal::configFactory()->getEditable('system.date');
   $config->set('country.default', 'US');
   $config->save();
+}
+
+/**
+ * Fix for yusaopeny 10.3.1 hook updates.
+ */
+function ymca_cloud_infra_update_9004() {
+  // Enable required dependencies modules.
+  $modules = ['openy_node_blog'];
+  \Drupal::service('module_installer')->install($modules);
+  // Remove dependenies from user.role.site_owner.
+  $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
+  $config = 'user.role.site_owner';
+  $config_importer = \Drupal::service('openy_upgrade_tool.param_updater');
+  $config_importer->update(
+    $path . '/' . $config . '.yml',
+    $config,
+    'dependencies',
+  );
 }

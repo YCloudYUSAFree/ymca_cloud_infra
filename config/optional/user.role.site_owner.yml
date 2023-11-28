@@ -1,82 +1,8 @@
 langcode: en
 status: true
 dependencies:
-  config:
-    - core.entity_view_display.node.article_lb.default
-    - core.entity_view_display.node.branch.full
-    - core.entity_view_display.node.landing_page_lb.default
-    - core.entity_view_display.node.lb_event.default
-    - filter.format.code
-    - filter.format.full_html
-    - media.type.document
-    - media.type.image
-    - media.type.video
-    - node.type.activity
-    - node.type.alert
-    - node.type.article_lb
-    - node.type.blog
-    - node.type.branch
-    - node.type.camp
-    - node.type.class
-    - node.type.event
-    - node.type.facility
-    - node.type.landing_page
-    - node.type.landing_page_lb
-    - node.type.lb_event
-    - node.type.membership
-    - node.type.news
-    - node.type.program
-    - node.type.program_subcategory
-    - node.type.session
-    - node.type.social_post
-    - taxonomy.vocabulary.amenities
-    - taxonomy.vocabulary.area
-    - taxonomy.vocabulary.blog_category
-    - taxonomy.vocabulary.color
-    - taxonomy.vocabulary.facility_type
-    - taxonomy.vocabulary.font_classification
-    - taxonomy.vocabulary.font_designer
-    - taxonomy.vocabulary.font_foundry
-    - taxonomy.vocabulary.font_tags
-    - taxonomy.vocabulary.languages_supported
-    - taxonomy.vocabulary.media_folders
-    - taxonomy.vocabulary.media_tags
-    - taxonomy.vocabulary.news_category
   module:
-    - block
-    - bootstrap_layout_builder
-    - content_moderation
-    - contextual
-    - daxko
-    - dropzonejs
-    - entity_browser
-    - entity_clone
-    - file
-    - file_delete
-    - filter
-    - google_analytics
-    - google_optimize
-    - google_tag
-    - layout_builder
-    - layout_builder_restrictions
-    - media
-    - media_directories_ui
-    - metatag
-    - node
-    - openy
-    - openy_daxko2
-    - openy_programs_search
-    - path
-    - quickedit
-    - redirect
-    - role_delegation
-    - scheduler
-    - system
-    - taxonomy
-    - toolbar
-    - tour
-    - update
-    - webform
+    - user
 id: site_owner
 label: 'Site Owner'
 weight: 5
