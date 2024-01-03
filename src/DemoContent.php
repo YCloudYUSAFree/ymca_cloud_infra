@@ -45,6 +45,13 @@ class DemoContent {
    */
   public function __construct(ModuleInstallerInterface $module_installer, Importer $importer, MenuLinkTreeInterface $menu_link_tree) {
     $this->mapping = [
+      // Demo branches content.
+      'openy_demo_nbranch' => ['openy_demo_node_branch'],
+      // Locations page dependencies.
+      'openy_prgf_loc_finder' => [],
+      'openy_prgf_location_by_amenities' => [],
+      'openy_demo_tamenities' => ['openy_demo_taxonomy_term_amenities'],
+      'openy_demo_nlanding' => ['openy_demo_node_landing'],
       // Programs sub-program content.
       'openy_prgf_categories_listing' => [],
       'openy_prgf_classes_listing' => [],
@@ -65,6 +72,10 @@ class DemoContent {
         'openy_demo_paragraph_class_location_02',
         'openy_demo_paragraph_class_sessions_01',
         'openy_demo_paragraph_class_sessions_02',
+      ],
+      'openy_demo_nsessions' => [
+        "openy_demo_node_session_01",
+        "openy_demo_paragraph_session_time_01",
       ],
     ];
     $this->moduleInstaller = $module_installer;

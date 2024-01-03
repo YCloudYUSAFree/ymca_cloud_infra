@@ -29,7 +29,6 @@ function ymca_cloud_infra_install() {
   /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
   $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
   $demo_content_service->enableDemoContentModules();
-  $demo_content_service->clearMainMenu();
   $demo_content_service->runMigrations();
   $demo_content_service->disableDemoContentModules();
   $install_state = [];
