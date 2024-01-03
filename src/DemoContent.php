@@ -5,6 +5,7 @@ namespace Drupal\ymca_cloud_infra;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\openy_migrate\Importer;
+use Drupal\user\Entity\Role;
 
 /**
  * Demo content service.
@@ -43,7 +44,29 @@ class DemoContent {
    * Class constructor.
    */
   public function __construct(ModuleInstallerInterface $module_installer, Importer $importer, MenuLinkTreeInterface $menu_link_tree) {
-    $this->mapping = [];
+    $this->mapping = [
+      // Programs sub-program content.
+      'openy_prgf_categories_listing' => [],
+      'openy_prgf_classes_listing' => [],
+      'openy_prgf_branches_popup_all' => [],
+      'openy_demo_nprogram' => [
+        'openy_demo_paragraph_category_listing',
+        'openy_demo_paragraph_promo_card',
+        'openy_demo_node_program',
+      ],
+      'openy_demo_ncategory' => ['openy_demo_node_program_subcategory'],
+      'openy_demo_nclass' => [
+        'openy_demo_node_activity',
+        'openy_demo_node_class_01',
+        'openy_demo_node_class_02',
+        'openy_demo_paragraph_branches_popup_class_01',
+        'openy_demo_paragraph_branches_popup_class_02',
+        'openy_demo_paragraph_class_location_01',
+        'openy_demo_paragraph_class_location_02',
+        'openy_demo_paragraph_class_sessions_01',
+        'openy_demo_paragraph_class_sessions_02',
+      ],
+    ];
     $this->moduleInstaller = $module_installer;
     $this->importer = $importer;
     $this->menuLinkTree = $menu_link_tree;
@@ -99,6 +122,22 @@ class DemoContent {
     foreach ($tree as $item) {
       $item->link->deleteLink();
     }
+  }
+
+  /**
+   * Set permissions for role.
+   *
+   * @param string $user_role
+   *   The user role.
+   * @param array $permissions
+   *   The permissions.
+   */
+  public function setPermissions(string $user_role, array $permissions): void {
+    $role = Role::load($user_role);
+    foreach ($permissions as $permission) {
+      $role->grantPermission($permission);
+    }
+    $role->save();
   }
 
 }

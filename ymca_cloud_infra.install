@@ -119,6 +119,13 @@ function ymca_cloud_infra_update_9004() {
 function ymca_cloud_infra_update_9005() {
   $modules = ['daxko', 'openy_daxko2'];
   \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    'administer daxko',
+    'administer daxko2',
+  ]);
 }
 
 /**
@@ -127,14 +134,27 @@ function ymca_cloud_infra_update_9005() {
 function ymca_cloud_infra_update_9006() {
   $modules = ['file_delete'];
   \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    'delete files',
+  ]);
 }
 
 /**
- * Enable google_tag module.
+ * Enable google_tag and google_optimize module.
  */
 function ymca_cloud_infra_update_9007() {
-  $modules = ['google_tag'];
+  $modules = ['google_tag', 'google_optimize'];
   \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "administer google optimize",
+    "administer google tag manager",
+  ]);
 }
 
 /**
@@ -143,28 +163,85 @@ function ymca_cloud_infra_update_9007() {
 function ymca_cloud_infra_update_9008() {
   $modules = ['fontyourface'];
   \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "create terms in font_classification",
+    "create terms in font_designer",
+    "create terms in font_foundry",
+    "create terms in font_tags",
+    "create terms in languages_supported",
+  ]);
 }
 
 /**
- * Import user.role.contributor.
+ * Set user.role.contributor permissions.
  */
 function ymca_cloud_infra_update_9009() {
-  $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
-  $config_importer = \Drupal::service('config_import.importer');
-  $config_importer->setDirectory($path);
-  $config_importer->importConfigs([
-    'user.role.contributor',
-  ]);
+  $permissions = [
+    "create activity content",
+    "create class content",
+    "create membership content",
+    "create session content",
+    "delete own activity content",
+    "delete own class content",
+    "delete own membership content",
+    "delete own session content",
+    "edit any activity content",
+    "edit any class content",
+    "edit any membership content",
+    "edit any session content",
+    "edit own activity content",
+    "edit own class content",
+    "edit own membership content",
+    "edit own session content",
+    "view activity revisions",
+    "view class revisions",
+    "view membership revisions",
+    "view session revisions",
+  ];
 }
 
 /**
- * Import user.role.site_owner.
+ * Set user.role.site_owner permissions.
  */
 function ymca_cloud_infra_update_9010() {
-  $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
-  $config_importer = \Drupal::service('config_import.importer');
-  $config_importer->setDirectory($path);
-  $config_importer->importConfigs([
-    'user.role.site_owner',
-  ]);
+  $permissions = [
+    "access in-place editing",
+    "administer programs search",
+    "assign contributor role",
+    "assign editor role",
+    "assign site_owner role",
+    "create activity content",
+    "create blog content",
+    "create class content",
+    "create event content",
+    "create membership content",
+    "create session content",
+    "create social_post content",
+    "delete any blog content",
+    "delete any class content",
+    "delete any membership content",
+    "delete own activity content",
+    "delete own class content",
+    "delete own membership content",
+    "delete own session content",
+    "edit any activity content",
+    "edit any class content",
+    "edit any membership content",
+    "edit any session content",
+    "edit own activity content",
+    "edit own blog content",
+    "edit own class content",
+    "edit own membership content",
+    "edit own session content",
+    "revert class revisions",
+    "revert membership revisions",
+    "view activity revisions",
+    "view blog revisions",
+    "view class revisions",
+    "view membership revisions",
+    "view session revisions",
+  ];
 }
