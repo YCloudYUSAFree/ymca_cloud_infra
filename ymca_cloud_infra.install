@@ -112,3 +112,59 @@ function ymca_cloud_infra_update_9004() {
     'dependencies',
   );
 }
+
+/**
+ * Enable daxko modules.
+ */
+function ymca_cloud_infra_update_9004() {
+  $modules = ['daxko', 'openy_daxko2'];
+  \Drupal::service('module_installer')->install($modules);
+}
+
+/**
+ * Enable file_delete module.
+ */
+function ymca_cloud_infra_update_9005() {
+  $modules = ['file_delete'];
+  \Drupal::service('module_installer')->install($modules);
+}
+
+/**
+ * Enable google_tag module.
+ */
+function ymca_cloud_infra_update_9006() {
+  $modules = ['google_tag'];
+  \Drupal::service('module_installer')->install($modules);
+}
+
+/**
+ * Enable fontyourface module.
+ */
+function ymca_cloud_infra_update_9007() {
+  $modules = ['fontyourface'];
+  \Drupal::service('module_installer')->install($modules);
+}
+
+/**
+ * Import user.role.contributor.
+ */
+function ymca_cloud_infra_update_9008() {
+  $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
+  $config_importer = \Drupal::service('config_import.importer');
+  $config_importer->setDirectory($path);
+  $config_importer->importConfigs([
+    'user.role.contributor',
+  ]);
+}
+
+/**
+ * Import user.role.site_owner.
+ */
+function ymca_cloud_infra_update_9009() {
+  $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
+  $config_importer = \Drupal::service('config_import.importer');
+  $config_importer->setDirectory($path);
+  $config_importer->importConfigs([
+    'user.role.site_owner',
+  ]);
+}

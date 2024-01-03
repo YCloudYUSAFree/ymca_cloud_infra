@@ -4,6 +4,8 @@
     "description": "Drupal module to provide post-installation setup for web services",
     "keywords": ["Drupal"],
     "dependencies": {
-        "drupal/redis": "*"
+        "drupal/redis": "*",
+        "drupal/file_delete": ">=2.0",
+        "drupal/fontyourface": ">=4.0"
     }
 }
