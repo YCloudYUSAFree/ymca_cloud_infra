@@ -43,40 +43,7 @@ class DemoContent {
    * Class constructor.
    */
   public function __construct(ModuleInstallerInterface $module_installer, Importer $importer, MenuLinkTreeInterface $menu_link_tree) {
-    $this->mapping = [
-      // Demo branches content.
-      'openy_demo_nbranch' => ['openy_demo_node_branch'],
-      // Locations page dependencies.
-      'openy_prgf_loc_finder' => [],
-      'openy_prgf_location_by_amenities' => [],
-      'openy_demo_tamenities' => ['openy_demo_taxonomy_term_amenities'],
-      'openy_demo_nlanding' => ['openy_demo_node_landing'],
-      // Programs sub-program content.
-      'openy_prgf_categories_listing' => [],
-      'openy_prgf_classes_listing' => [],
-      'openy_prgf_branches_popup_all' => [],
-      'openy_demo_nprogram' => [
-        'openy_demo_paragraph_category_listing',
-        'openy_demo_paragraph_promo_card',
-        'openy_demo_node_program',
-      ],
-      'openy_demo_ncategory' => ['openy_demo_node_program_subcategory'],
-      'openy_demo_nclass' => [
-        'openy_demo_node_activity',
-        'openy_demo_node_class_01',
-        'openy_demo_node_class_02',
-        'openy_demo_paragraph_branches_popup_class_01',
-        'openy_demo_paragraph_branches_popup_class_02',
-        'openy_demo_paragraph_class_location_01',
-        'openy_demo_paragraph_class_location_02',
-        'openy_demo_paragraph_class_sessions_01',
-        'openy_demo_paragraph_class_sessions_02',
-      ],
-      // Menu items.
-      'openy_demo_menu' => [],
-      'openy_demo_menu_main' => [],
-      'ymca_cloud_infra_main_menu_demo' => ['yusa_demo_menu_link_main'],
-    ];
+    $this->mapping = [];
     $this->moduleInstaller = $module_installer;
     $this->importer = $importer;
     $this->menuLinkTree = $menu_link_tree;

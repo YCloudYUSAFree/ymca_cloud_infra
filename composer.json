@@ -2,5 +2,8 @@
     "name": "ycloudyusa/ymca_cloud_infra",
     "type": "drupal-module",
     "description": "Drupal module to provide post-installation setup for web services",
-    "keywords": ["Drupal"]
+    "keywords": ["Drupal"],
+    "dependencies": {
+        "drupal/redis": "*"
+    }
 }

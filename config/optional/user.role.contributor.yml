@@ -1,10 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  config:
-    - filter.format.full_html
-    - node.type.branch
-    - node.type.landing_page
   module:
     - content_moderation
     - dropzonejs
