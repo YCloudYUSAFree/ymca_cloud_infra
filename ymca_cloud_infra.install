@@ -6,6 +6,18 @@
  */
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function ymca_cloud_infra_update_dependencies() {
+  $dependencies['lb_grid_icon'] = [
+    9002 => [
+      'ymca_cloud_infra' => 9004,
+    ],
+  ];
+  return $dependencies;
+}
+
+/**
  * Implements hook_install().
  */
 function ymca_cloud_infra_install() {
@@ -17,12 +29,66 @@ function ymca_cloud_infra_install() {
   /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
   $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
   $demo_content_service->enableDemoContentModules();
-  $demo_content_service->clearMainMenu();
   $demo_content_service->runMigrations();
   $demo_content_service->disableDemoContentModules();
   $install_state = [];
   openy_discover_broken_paragraphs($install_state);
   openy_fix_configured_paragraph_blocks($install_state);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $demo_content_service->setPermissions('site_owner', [
+    "create activity content",
+    "create blog content",
+    "create class content",
+    "create session content",
+    "delete any blog content",
+    "delete any class content",
+    "delete own activity content",
+    "delete own class content",
+    "delete own session content",
+    "edit any activity content",
+    "edit any class content",
+    "edit any session content",
+    "edit own activity content",
+    "edit own blog content",
+    "edit own class content",
+    "edit own session content",
+    "revert class revisions",
+    "view activity revisions",
+    "view blog revisions",
+    "view class revisions",
+    "view session revisions",
+    "create membership content",
+    "delete any membership content",
+    "delete own membership content",
+    "edit any membership content",
+    "edit own membership content",
+    "revert membership revisions",
+    "view membership revisions",
+  ]);
+  $demo_content_service->setPermissions('contributor', [
+    "create social_post content",
+    "create activity content",
+    "create class content",
+    "create session content",
+    "delete own activity content",
+    "delete own class content",
+    "delete own session content",
+    "edit any activity content",
+    "edit any class content",
+    "edit any session content",
+    "edit own activity content",
+    "edit own class content",
+    "edit own session content",
+    "view activity revisions",
+    "view class revisions",
+    "view session revisions",
+    "create membership content",
+    "delete own membership content",
+    "edit any membership content",
+    "edit own membership content",
+    "view membership revisions",
+  ]);
 }
 
 /**
@@ -81,4 +147,113 @@ function ymca_cloud_infra_update_9003() {
   $config = \Drupal::configFactory()->getEditable('system.date');
   $config->set('country.default', 'US');
   $config->save();
+}
+
+/**
+ * Fix for yusaopeny 10.3.1 hook updates.
+ */
+function ymca_cloud_infra_update_9004() {
+  // Enable required dependencies modules.
+  $modules = ['openy_node_blog'];
+  \Drupal::service('module_installer')->install($modules);
+  // Fix dependenies from user.role.site_owner and contributor
+  $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
+  $config_importer = \Drupal::service('config_import.importer');
+  $config_importer->setDirectory($path);
+  $config_importer->importConfigs([
+    'user.role.contributor',
+    'user.role.site_owner',
+  ]);
+}
+
+/**
+ * Enable daxko modules.
+ */
+function ymca_cloud_infra_update_9005() {
+  $modules = ['daxko', 'openy_daxko2'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    'administer daxko',
+    'administer daxko2',
+  ]);
+}
+
+/**
+ * Enable file_delete module.
+ */
+function ymca_cloud_infra_update_9006() {
+  $modules = ['file_delete'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    'delete files',
+  ]);
+}
+
+/**
+ * Enable google_tag and google_optimize module.
+ */
+function ymca_cloud_infra_update_9007() {
+  $modules = ['google_tag', 'google_optimize'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "administer google optimize",
+    "administer google tag manager",
+  ]);
+}
+
+/**
+ * Enable fontyourface module.
+ */
+function ymca_cloud_infra_update_9008() {
+  $modules = ['fontyourface'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "create terms in font_classification",
+    "create terms in font_designer",
+    "create terms in font_foundry",
+    "create terms in font_tags",
+    "create terms in languages_supported",
+  ]);
+}
+
+/**
+ * Enable role_delegation module.
+ */
+function ymca_cloud_infra_update_9009() {
+  $modules = ['role_delegation'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "assign contributor role",
+    "assign editor role",
+    "assign site_owner role",
+  ]);
+}
+
+/**
+ * Enable program_search module.
+ */
+function ymca_cloud_infra_update_9010() {
+  $modules = ['openy_programs_search'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "administer programs search",
+  ]);
 }

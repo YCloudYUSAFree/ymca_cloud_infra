@@ -5,6 +5,7 @@ namespace Drupal\ymca_cloud_infra;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\openy_migrate\Importer;
+use Drupal\user\Entity\Role;
 
 /**
  * Demo content service.
@@ -44,6 +45,7 @@ class DemoContent {
    */
   public function __construct(ModuleInstallerInterface $module_installer, Importer $importer, MenuLinkTreeInterface $menu_link_tree) {
     $this->mapping = [
+      'openy_node_social_post' => [],
       // Demo branches content.
       'openy_demo_nbranch' => ['openy_demo_node_branch'],
       // Locations page dependencies.
@@ -72,10 +74,17 @@ class DemoContent {
         'openy_demo_paragraph_class_sessions_01',
         'openy_demo_paragraph_class_sessions_02',
       ],
-      // Menu items.
-      'openy_demo_menu' => [],
-      'openy_demo_menu_main' => [],
-      'ymca_cloud_infra_main_menu_demo' => ['yusa_demo_menu_link_main'],
+      'openy_repeat' => [],
+      'openy_demo_nsessions' => [
+        "openy_demo_node_session_01",
+        "openy_demo_paragraph_session_time_01",
+      ],
+      'openy_demo_nmbrshp' => [
+        "openy_demo_membership_file",
+        "openy_demo_membership_media_image",
+        "openy_demo_membership_paragraph_membership_info",
+        "openy_demo_node_membership",
+      ],
     ];
     $this->moduleInstaller = $module_installer;
     $this->importer = $importer;
@@ -132,6 +141,22 @@ class DemoContent {
     foreach ($tree as $item) {
       $item->link->deleteLink();
     }
+  }
+
+  /**
+   * Set permissions for role.
+   *
+   * @param string $user_role
+   *   The user role.
+   * @param array $permissions
+   *   The permissions.
+   */
+  public function setPermissions(string $user_role, array $permissions): void {
+    $role = Role::load($user_role);
+    foreach ($permissions as $permission) {
+      $role->grantPermission($permission);
+    }
+    $role->save();
   }
 
 }

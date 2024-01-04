@@ -2,5 +2,11 @@
     "name": "ycloudyusa/ymca_cloud_infra",
     "type": "drupal-module",
     "description": "Drupal module to provide post-installation setup for web services",
-    "keywords": ["Drupal"]
+    "keywords": ["Drupal"],
+    "require": {
+        "drupal/redis": "*",
+        "drupal/file_delete": ">=2.0",
+        "drupal/fontyourface": "*",
+        "drupal/role_delegation": "^1.2"
+    }
 }
