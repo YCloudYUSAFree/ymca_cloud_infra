@@ -58,6 +58,13 @@ function ymca_cloud_infra_install() {
     "view blog revisions",
     "view class revisions",
     "view session revisions",
+    "create membership content",
+    "delete any membership content",
+    "delete own membership content",
+    "edit any membership content",
+    "edit own membership content",
+    "revert membership revisions",
+    "view membership revisions",
   ]);
   $demo_content_service->setPermissions('contributor', [
     "create social_post content",
@@ -76,28 +83,12 @@ function ymca_cloud_infra_install() {
     "view activity revisions",
     "view class revisions",
     "view session revisions",
+    "create membership content",
+    "delete own membership content",
+    "edit any membership content",
+    "edit own membership content",
+    "view membership revisions",
   ]);
-  /*
-  $todo__site_owner_permissions = [
-    "access in-place editing",
-    "administer programs search",
-    "create event content", // We don't have event content type. But we have event lb content type.
-    "create membership content",
-    "delete any membership content",
-    "delete own membership content",
-    "edit any membership content",
-    "edit own membership content",
-    "revert membership revisions",
-    "view membership revisions",
-  ];
-  $todo_contributor_permissions = [
-    "create membership content",
-    "delete own membership content",
-    "edit any membership content",
-    "edit own membership content",
-    "view membership revisions",
-  ];
-  */
 }
 
 /**
@@ -251,5 +242,19 @@ function ymca_cloud_infra_update_9009() {
     "assign contributor role",
     "assign editor role",
     "assign site_owner role",
+  ]);
+}
+
+/**
+ * Enable program_search module.
+ */
+function ymca_cloud_infra_update_9010() {
+  $modules = ['openy_programs_search'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "administer programs search",
   ]);
 }
