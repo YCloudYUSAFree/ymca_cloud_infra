@@ -6,7 +6,7 @@
     "require": {
         "drupal/redis": "*",
         "drupal/file_delete": ">=2.0",
-        "drupal/fontyourface": ">=4.0",
+        "drupal/fontyourface": "*",
         "drupal/role_delegation": "^1.2"
     }
 }
