@@ -60,6 +60,7 @@ function ymca_cloud_infra_install() {
     "view session revisions",
   ]);
   $demo_content_service->setPermissions('contributor', [
+    "create social_post content",
     "create activity content",
     "create class content",
     "create session content",
@@ -80,12 +81,8 @@ function ymca_cloud_infra_install() {
   $todo__site_owner_permissions = [
     "access in-place editing",
     "administer programs search",
-    "assign contributor role",
-    "assign editor role",
-    "assign site_owner role",
-    "create event content",
+    "create event content", // We don't have event content type. But we have event lb content type.
     "create membership content",
-    "create social_post content",
     "delete any membership content",
     "delete own membership content",
     "edit any membership content",
@@ -238,5 +235,21 @@ function ymca_cloud_infra_update_9008() {
     "create terms in font_foundry",
     "create terms in font_tags",
     "create terms in languages_supported",
+  ]);
+}
+
+/**
+ * Enable role_delegation module.
+ */
+function ymca_cloud_infra_update_9009() {
+  $modules = ['role_delegation'];
+  \Drupal::service('module_installer')->install($modules);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $role = 'site_owner';
+  $demo_content_service->setPermissions($role, [
+    "assign contributor role",
+    "assign editor role",
+    "assign site_owner role",
   ]);
 }

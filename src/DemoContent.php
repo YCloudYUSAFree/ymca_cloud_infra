@@ -45,6 +45,7 @@ class DemoContent {
    */
   public function __construct(ModuleInstallerInterface $module_installer, Importer $importer, MenuLinkTreeInterface $menu_link_tree) {
     $this->mapping = [
+      'openy_node_social_post' => [],
       // Demo branches content.
       'openy_demo_nbranch' => ['openy_demo_node_branch'],
       // Locations page dependencies.
@@ -77,6 +78,12 @@ class DemoContent {
       'openy_demo_nsessions' => [
         "openy_demo_node_session_01",
         "openy_demo_paragraph_session_time_01",
+      ],
+      'openy_demo_nmbrshp' => [
+        "openy_demo_membership_file",
+        "openy_demo_membership_media_image",
+        "openy_demo_membership_paragraph_membership_info",
+        "openy_demo_node_membership",
       ],
     ];
     $this->moduleInstaller = $module_installer;
