@@ -156,15 +156,14 @@ function ymca_cloud_infra_update_9004() {
   // Enable required dependencies modules.
   $modules = ['openy_node_blog'];
   \Drupal::service('module_installer')->install($modules);
-  // Remove dependenies from user.role.site_owner.
+  // Fix dependenies from user.role.site_owner and contributor
   $path = \Drupal::service('extension.list.module')->getPath('ymca_cloud_infra') . '/config/optional';
-  $config = 'user.role.site_owner';
-  $config_importer = \Drupal::service('openy_upgrade_tool.param_updater');
-  $config_importer->update(
-    $path . '/' . $config . '.yml',
-    $config,
-    'dependencies',
-  );
+  $config_importer = \Drupal::service('config_import.importer');
+  $config_importer->setDirectory($path);
+  $config_importer->importConfigs([
+    'user.role.contributor',
+    'user.role.site_owner',
+  ]);
 }
 
 /**
