@@ -73,6 +73,7 @@ class DemoContent {
         'openy_demo_paragraph_class_sessions_01',
         'openy_demo_paragraph_class_sessions_02',
       ],
+      'openy_repeat' => [],
       'openy_demo_nsessions' => [
         "openy_demo_node_session_01",
         "openy_demo_paragraph_session_time_01",
