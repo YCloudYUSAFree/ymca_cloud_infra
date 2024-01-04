@@ -34,6 +34,73 @@ function ymca_cloud_infra_install() {
   $install_state = [];
   openy_discover_broken_paragraphs($install_state);
   openy_fix_configured_paragraph_blocks($install_state);
+  /** @var \Drupal\ymca_cloud_infra\DemoContent $demo_content_service */
+  $demo_content_service = \Drupal::service('ymca_cloud_infra.demo_content');
+  $demo_content_service->setPermissions('site_owner', [
+    "create activity content",
+    "create blog content",
+    "create class content",
+    "create session content",
+    "delete any blog content",
+    "delete any class content",
+    "delete own activity content",
+    "delete own class content",
+    "delete own session content",
+    "edit any activity content",
+    "edit any class content",
+    "edit any session content",
+    "edit own activity content",
+    "edit own blog content",
+    "edit own class content",
+    "edit own session content",
+    "revert class revisions",
+    "view activity revisions",
+    "view blog revisions",
+    "view class revisions",
+    "view session revisions",
+  ]);
+  $demo_content_service->setPermissions('contributor', [
+    "create activity content",
+    "create class content",
+    "create session content",
+    "delete own activity content",
+    "delete own class content",
+    "delete own session content",
+    "edit any activity content",
+    "edit any class content",
+    "edit any session content",
+    "edit own activity content",
+    "edit own class content",
+    "edit own session content",
+    "view activity revisions",
+    "view class revisions",
+    "view session revisions",
+  ]);
+  /*
+  $todo__site_owner_permissions = [
+    "access in-place editing",
+    "administer programs search",
+    "assign contributor role",
+    "assign editor role",
+    "assign site_owner role",
+    "create event content",
+    "create membership content",
+    "create social_post content",
+    "delete any membership content",
+    "delete own membership content",
+    "edit any membership content",
+    "edit own membership content",
+    "revert membership revisions",
+    "view membership revisions",
+  ];
+  $todo_contributor_permissions = [
+    "create membership content",
+    "delete own membership content",
+    "edit any membership content",
+    "edit own membership content",
+    "view membership revisions",
+  ];
+  */
 }
 
 /**
@@ -172,75 +239,4 @@ function ymca_cloud_infra_update_9008() {
     "create terms in font_tags",
     "create terms in languages_supported",
   ]);
-}
-
-/**
- * Set user.role.contributor permissions.
- */
-function ymca_cloud_infra_update_9009() {
-  $permissions = [
-    "create activity content",
-    "create class content",
-    "create membership content",
-    "create session content",
-    "delete own activity content",
-    "delete own class content",
-    "delete own membership content",
-    "delete own session content",
-    "edit any activity content",
-    "edit any class content",
-    "edit any membership content",
-    "edit any session content",
-    "edit own activity content",
-    "edit own class content",
-    "edit own membership content",
-    "edit own session content",
-    "view activity revisions",
-    "view class revisions",
-    "view membership revisions",
-    "view session revisions",
-  ];
-}
-
-/**
- * Set user.role.site_owner permissions.
- */
-function ymca_cloud_infra_update_9010() {
-  $permissions = [
-    "access in-place editing",
-    "administer programs search",
-    "assign contributor role",
-    "assign editor role",
-    "assign site_owner role",
-    "create activity content",
-    "create blog content",
-    "create class content",
-    "create event content",
-    "create membership content",
-    "create session content",
-    "create social_post content",
-    "delete any blog content",
-    "delete any class content",
-    "delete any membership content",
-    "delete own activity content",
-    "delete own class content",
-    "delete own membership content",
-    "delete own session content",
-    "edit any activity content",
-    "edit any class content",
-    "edit any membership content",
-    "edit any session content",
-    "edit own activity content",
-    "edit own blog content",
-    "edit own class content",
-    "edit own membership content",
-    "edit own session content",
-    "revert class revisions",
-    "revert membership revisions",
-    "view activity revisions",
-    "view blog revisions",
-    "view class revisions",
-    "view membership revisions",
-    "view session revisions",
-  ];
 }
