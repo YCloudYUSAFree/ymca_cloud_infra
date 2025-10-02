@@ -2,4 +2,4 @@ name: YMCA Cloud infra
 type: module
 description: Drupal module to provide post installation setup for web services
 package: YMCA Cloud
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
